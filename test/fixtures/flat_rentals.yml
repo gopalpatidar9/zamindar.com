@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  property_type: MyString
+  posting_type: MyString
+  bedrooms: 1
+  furnishing_status: MyString
+  present_in: MyString
+  floor_no: 1
+  monthly_rent: 9.99
+  security_deposit: 9.99
+  room_facilities: MyText
+  washrooms: 1
+  preferred_gender: MyString
+  tenant_preference: MyString
+  parking_availability: MyString
+
+two:
+  property_type: MyString
+  posting_type: MyString
+  bedrooms: 1
+  furnishing_status: MyString
+  present_in: MyString
+  floor_no: 1
+  monthly_rent: 9.99
+  security_deposit: 9.99
+  room_facilities: MyText
+  washrooms: 1
+  preferred_gender: MyString
+  tenant_preference: MyString
+  parking_availability: MyString

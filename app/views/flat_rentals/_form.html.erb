@@ -1,0 +1,159 @@
+
+<%= form_with(model: flat_rental) do |form| %>
+  <% if flat_rental.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(flat_rental.errors.count, "error") %> prohibited this flat_rental from being saved:</h2>
+
+      <ul>
+        <% flat_rental.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :property_type %>
+    <%= form.select :property_type, FlatRental::PROPERTY_TYPES, prompt: 'Select Property Type' %>
+  </div>
+
+  <label for="posting_type">Posting Us:</label>
+    <div class="form-check">
+      <%= form.radio_button :posting_type, 'Full House' %> Full House
+    </div>
+    <div class="form-check">
+      <%= form.radio_button :posting_type, 'On Sharing' %> On Sharing House
+    </div>
+
+  <div>
+    <label for="bedrooms">No. of bedrooms</label>
+    <%= form.number_field :bedrooms %>
+  </div>
+
+  <div>
+    <%= form.label :furnishing_status, style: "display: block" %>
+    <%= form.select :furnishing_status , FlatRental::FURNISHING_STATUS, prompt: 'select status' %>
+  </div>
+
+  <div>
+    <%= form.label :present_in, style: "display: block" %>
+    <%= form.select :present_in , FlatRental::PRESENT_IN, prompt: 'select' %>
+  </div>
+
+  <div>
+    <%= form.label :floor_no, style: "display: block" %>
+    <%= form.select :floor_no , FlatRental::FLOOR_NO, prompt: 'select' %>
+  </div>
+
+  <label for="room_facilities">Room Facilities:</label>
+    <div class="form-check">
+      <%= form.check_box :room_facilities, { multiple: true }, 'Bed', nil %>
+      <%= form.label :room_facilities, 'Bed' %>
+    </div>
+    <div class="form-check">
+      <%= form.check_box :room_facilities, { multiple: true }, 'Kichen', nil %>
+      <%= form.label :room_facilities, 'Kichen' %>
+    </div>
+    <div class="form-check">
+      <%= form.check_box :room_facilities, { multiple: true }, 'Side Table', nil %>
+      <%= form.label :room_facilities, 'Side Table' %>
+    </div>
+    <div class="form-check">
+      <%= form.check_box :room_facilities, { multiple: true }, 'Cupboard', nil %>
+      <%= form.label :room_facilities, 'Cupboard' %>
+    </div>
+    <div class="form-check">
+      <%= form.check_box :room_facilities, { multiple: true }, 'TV', nil %>
+      <%= form.label :room_facilities, 'TV' %>
+    </div>
+    <div class="form-check">
+      <%= form.check_box :room_facilities, { multiple: true }, 'Mattress', nil %>
+      <%= form.label :room_facilities, 'Mattress' %>
+    </div>
+    <div class="form-check">
+      <%= form.check_box :room_facilities, { multiple: true }, 'Air Cooler', nil %>
+      <%= form.label :room_facilities, 'Air Cooler' %>
+    </div>
+
+    <div class="form-check">
+      <%= form.check_box :room_facilities, { multiple: true }, 'Wi-Fi', nil %>
+      <%= form.label :room_facilities, 'Wi-Fi' %>
+    </div>
+
+  <div>
+    <%= form.label :washrooms, style: "display: block" %>
+    <%= form.number_field :washrooms %>
+  </div>
+
+  
+  <label for="preferred_gender">Preferred Gender</label>
+    <div class="form-check">
+      <%= form.radio_button :preferred_gender, 'male' %> male
+    </div>
+    <div class="form-check">
+      <%= form.radio_button :preferred_gender, 'Femal' %> Femal
+    </div>
+    <div class="form-check">
+      <%= form.radio_button :preferred_gender, 'Both' %> Both
+    </div>
+
+  <label for="tenant_preference">Tenant Preference</label>
+    <div class="form-check">
+      <%= form.radio_button :tenant_preference, 'Professionals' %> Professionals
+    </div>
+    <div class="form-check">
+      <%= form.radio_button :tenant_preference, 'Students' %> Students
+    </div>
+    <div class="form-check">
+      <%= form.radio_button :tenant_preference, 'Both' %> Both
+    </div>
+
+  <label for="parking_availability">Parking Availability</label>
+    <div class="form-check">
+      <%= form.radio_button :parking_availability, '2-whealer' %> 2-whealer
+    </div>
+    <div class="form-check">
+      <%= form.radio_button :parking_availability, 'car parking' %> car parking
+    </div>
+    <div class="form-check">
+      <%= form.radio_button :parking_availability, 'Both' %> Both
+    </div>
+
+  <%= form.label :location %>
+  <%= form.text_field :location  %>
+
+  
+
+  <div class="form-group">
+    <%= form.label :country %>
+    <%= form.country_select :country, priority: ['United States', 'Canada'], class: 'form-control' %>
+  </div>
+
+  
+  <div class="form-group">
+    <%= form.label :city %>
+    <%= form.text_field :city, class: 'form-control' %>
+  </div>
+  
+   <%= form.number_field :user_id , value: current_user.id , type:"hidden" %>
+  
+  <div>
+    <%= form.label :monthly_rent, style: "display: block" %>
+    <%= form.text_field :monthly_rent %>
+  </div>
+
+  <div>
+    <%= form.label :security_deposit, style: "display: block" %>
+    <%= form.text_field :security_deposit %>
+  </div>
+
+   <div class="form-group">
+    <%= form.label :images, 'Upload Images' %>
+    <%= form.file_field :images, multiple: true, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
