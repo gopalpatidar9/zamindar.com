@@ -10,7 +10,7 @@ module Zamindar
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-    
+    config.assets.enabled = true
     # config.to_prepare do
     #   Devise::RegistrationsController.include(Api::Users::RegistrationsController)
     # end    

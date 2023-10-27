@@ -1,3 +1,0 @@
-class MmessagesController < ApplicationController
-    
-end

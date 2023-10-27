@@ -5,7 +5,7 @@
   <%= image_tag image, class: 'img-fluid', style: 'height:300px;' %>
 <% end %>
 <!-- Add this link/button where you want users to initiate a new message -->
-<div>
+  <div>
   <%= link_to "Edit this flat rental", edit_flat_rental_path(@flat_rental) %> |
   <%= link_to "Back to flat rentals", flat_rentals_path %>
 
@@ -13,3 +13,33 @@
 </div>
 
 
+<%= form_for [@flat_rental, Message.new], url: flat_rental_messages_path(@flat_rental), remote: true do |f| %>
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :receiver_id, @flat_rental.user.id %>
+  <%= f.text_area :content %>
+  <%= f.submit "Send" %>
+<% end %>
+
+
+<%= form_for [@flat_rental, Chatroome.create], url: flat_rental_chatroomes_path(@flat_rental), remote: true do |f| %>
+  <%= hidden_field_tag :receiver_id, @flat_rental.user.id %>
+  <%= hidden_field_tag :flat_rental, @flat_rental.id %>
+  <%= f.submit "Start chat" %>
+<% end %>
+
+
+<%
+=begin%>
+ <h2>Chat Messages</h2>
+<div id="chat-messages">
+  <% @messages.each do |message| %>
+    <div class="chat-message">
+      
+      <p><%= message.content %></p>
+    </div>
+  <% end %>
+</div> 
+<%
+=end%>
+<%= current_user.id %>
+<%= javascript_include_tag 'channels/flat_rental_chat' %>

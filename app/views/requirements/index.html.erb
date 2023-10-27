@@ -1,0 +1,8 @@
+<% @requirement.each do |data| %>
+  <%= data.location %>
+  <%= link_to "Show this flat rental", data %><br>
+<% end %>
+
+<p>
+<%= link_to "new" , requirements_new_path %>
+</p>

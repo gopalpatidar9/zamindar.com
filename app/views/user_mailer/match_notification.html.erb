@@ -1,0 +1,11 @@
+<!-- app/views/user_mailer/match_notification.html.erb -->
+
+<h1>Matching Rentals Found!</h1>
+<p>Dear <%= @user.name %>,</p>
+<p>We found matching rentals based on your requirements:</p>
+<ul>
+  <% @matching_rentals.each do |rental| %>
+    <li><%= rental.city %> - <%= rental.location %> - <%= number_to_currency(rental.monthly_rent) %></li>
+  <% end %>
+</ul>
+<p>Thank you for using our service.</p>

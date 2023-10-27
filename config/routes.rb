@@ -1,13 +1,22 @@
 Rails.application.routes.draw do
+  get 'requirements/new'
+  get 'requirements/create'
   root 'home#index'
   resources :flat_rentals
   devise_for :users
-  resources :messages, only: [:new, :create]
-  resources :mmessages
-  namespace :api do
-    resources :users, only: [:index]
+  resources :flat_rentals do
+    resources :messages, only: [:create, :show]
   end
   
+  resources :flat_rentals do
+    resources :chatroomes, only: [:create, :show]
+  end
+
+  resources :requirements, only: [:new, :create, :show, :index]
+  
+  resources :flat_rentals do
+     get :my_flats 
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

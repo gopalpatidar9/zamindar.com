@@ -1,0 +1,20 @@
+<%= form_with(model: @requirement, url: requirements_path, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :budget %>
+    <%= form.number_field :budget %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bedrooms %>
+    <%= form.number_field :bedrooms %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Submit" %>
+  </div>
+<% end %>

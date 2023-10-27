@@ -1,0 +1,17 @@
+
+<h1>Matching Rentals</h1>
+
+<% if @matching_rentals.present? %>
+  <ul>
+    <% @matching_rentals.each do |rental| %>
+      <li>
+        <strong>city:</strong> <%= rental.city %><br>
+        <strong>Location:</strong> <%= rental.location %><br>
+        <strong>Price:</strong> <%= number_to_currency(rental.monthly_rent) %>
+      </li>
+      <%= link_to "Show this flat rental", rental %>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No matching rentals found.</p>
+<% end %>

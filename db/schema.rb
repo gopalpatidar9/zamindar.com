@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_08_092954) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_20_133152) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,6 +39,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_08_092954) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "chatroomes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.integer "flat_rental_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "flat_rentals", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "property_type"
     t.string "posting_type"
@@ -63,11 +71,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_08_092954) do
 
   create_table "messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content"
-    t.integer "sender_id"
-    t.integer "receiver_id"
-    t.integer "flat_rental_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "chatroome_id"
   end
 
   create_table "mmessages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -78,6 +84,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_08_092954) do
     t.datetime "updated_at", null: false
     t.index ["flat_rental_id"], name: "index_mmessages_on_flat_rental_id"
     t.index ["user_id"], name: "index_mmessages_on_user_id"
+  end
+
+  create_table "requirements", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "location"
+    t.integer "budget"
+    t.integer "bedrooms"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_requirements_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -100,4 +116,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_08_092954) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "mmessages", "flat_rentals"
   add_foreign_key "mmessages", "users"
+  add_foreign_key "requirements", "users"
 end

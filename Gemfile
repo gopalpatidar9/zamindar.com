@@ -42,6 +42,7 @@ gem 'mini_magick'
 gem 'country_select'
 gem 'countries'
 
+gem 'whenever', require: false
 
 gem 'aws-sdk-s3'
 
@@ -73,7 +74,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-
+  gem 'letter_opener'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 

@@ -13,7 +13,8 @@ class FlatRental < ApplicationRecord
     has_many_attached :images
     validates :country, presence: true
     validates :city, presence: true
-    
+    has_many :messages
+    has_many :chatroomes
     
     belongs_to :user
     
