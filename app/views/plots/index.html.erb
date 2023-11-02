@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Plots</h1>
+
+<div id="plots">
+  <% @plots.each do |plot| %>
+    <%= render plot %>
+    <p>
+      <%= link_to "Show this plot", plot %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New plot", new_plot_path %>

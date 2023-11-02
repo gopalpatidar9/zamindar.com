@@ -218,14 +218,7 @@ function decreaseCurrentIndexBy(state, decreaseBy)
     return state.currentIndex - decreaseBy;
 }
 
-/**
- * Removes the control functionality completely and transforms the current state to the initial HTML structure.
- *
- * @static
- * @private
- * @method destroy
- * @param wizard {Object} A jQuery wizard object
- **/
+
 function destroy(wizard, options)
 {
     var eventNamespace = getEventNamespace(wizard);
@@ -909,9 +902,6 @@ function registerEvents(wizard, options)
     var eventNamespace = getEventNamespace(wizard);
 
     wizard.bind("canceled" + eventNamespace, options.onCanceled);
-    wizard.bind("contentLoaded" + eventNamespace, options.onContentLoaded);
-    wizard.bind("finishing" + eventNamespace, options.onFinishing);
-    wizard.bind("finished" + eventNamespace, options.onFinished);
     wizard.bind("init" + eventNamespace, options.onInit);
     wizard.bind("stepChanging" + eventNamespace, options.onStepChanging);
     wizard.bind("stepChanged" + eventNamespace, options.onStepChanged);
@@ -2015,15 +2005,7 @@ var defaults = $.fn.steps.defaults = {
          **/
         previous: "Previous",
 
-        /**
-         * Label for the loading animation.
-         *
-         * @property loading
-         * @type String
-         * @default "Loading ..."
-         * @for defaults
-         **/
-        loading: "Loading ..."
+       
     }
 };
 })(jQuery);

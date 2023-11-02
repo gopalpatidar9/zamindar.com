@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_20_133152) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_31_072120) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -69,6 +69,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_20_133152) do
     t.integer "user_id"
   end
 
+  create_table "lands", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "property_type"
+    t.string "city"
+    t.string "locality"
+    t.text "address"
+    t.decimal "road_width", precision: 10
+    t.decimal "plot_area", precision: 10
+    t.string "transaction_type"
+    t.string "property_availability"
+    t.decimal "expected_price", precision: 10
+    t.decimal "price_per_sqyrd", precision: 10
+    t.boolean "corner_plot"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", null: false
@@ -84,6 +100,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_20_133152) do
     t.datetime "updated_at", null: false
     t.index ["flat_rental_id"], name: "index_mmessages_on_flat_rental_id"
     t.index ["user_id"], name: "index_mmessages_on_user_id"
+  end
+
+  create_table "plots", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "property_type"
+    t.string "city"
+    t.string "locality"
+    t.text "address"
+    t.decimal "road_width", precision: 10
+    t.decimal "plot_area", precision: 10
+    t.string "transaction_type"
+    t.string "property_availability"
+    t.decimal "expected_price", precision: 10
+    t.decimal "price_per_sqyrd", precision: 10
+    t.boolean "corner_plot"
+    t.string "images"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "requirements", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

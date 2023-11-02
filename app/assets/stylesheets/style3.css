@@ -1,0 +1,217 @@
+.page-head{
+    background: #494C53 url("page-header.jpg")no-repeat scroll center top / cover;
+    color:#FFF;
+    position: relative;
+    height: 120px;
+    min-height: 120px;
+}
+.page-head-content {
+    padding-top: 52px;
+    padding-bottom: 52px;
+}
+.page-head-content .page-title {
+    margin: 0px;
+    padding: 10px 16px;
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+} 
+h3, .h3{
+    font-size: 28px;
+    margin: 20px 0 10px;
+} 
+h1, .h1, h2, .h2, h3, .h3, h4, .h4{
+    font-weight: 400;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+}   
+
+h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
+    font-size: 60%;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    /* background-color: #f1f1f1; */
+  }
+  
+  #regForm {
+    background-color: #ffffff;
+    margin: 10px auto;
+    font-family: Raleway;
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  
+  h1 {
+    text-align: center;  
+  }
+  
+  
+  /* Mark input boxes that gets an error on validation: */
+  input.invalid {
+    background-color: #ffdddd;
+  }
+  
+  /* Hide all steps by default: */
+  .tab {
+    display: none;
+  }
+  
+  button {
+    background-color: #FF5733;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;
+  }
+  
+  .btn{
+    background-color: #FF5733;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;  
+    width:200px;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  #prevBtn {
+    background-color: blue;
+  }
+  
+  /* Make circles that indicate the steps of the form: */
+  .step {
+    height: 60px;
+    width: 60px;
+    margin: 0 10px;
+    background-color: #bbbbbb;
+    border: none;  
+    border-radius:50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+  
+  .step.active {
+    opacity: 1;
+  }
+  
+  /* Mark the steps that are finished and valid: */
+  .step.finish {
+    background-color:#FF5733;
+  }
+  
+  
+  .form-row {
+   display: flex;
+   margin-bottom: 20px; 
+  }
+  .form-row .form-holder {
+   width: 50%;
+   margin-right: 20px; 
+  }
+  .form-row .form-holder:last-child {
+   margin-right: 0; 
+  }
+  .form-row .form-holder.w-100 {
+   width: 100%;
+   margin-right: 0; 
+  }
+  .form-row .form-group {
+   width: 50%;
+   display: flex; 
+  }
+  .form-row .form-group .form-holder {
+   margin-right: 21px; 
+  }
+  .form-row .form-group .form-holder:last-child {
+   margin-right: 0; 
+  }
+  
+  .form-holder {
+    position: relative; 
+  }
+  .form-holder i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    font-size: 16px; 
+  }
+  .form-holder i.zmdi-eye {
+     cursor: pointer; 
+  }
+  .form-row {
+    /* display: block;  */
+  }
+  .form-row .form-holder {
+    width: 800px;
+    /* margin-right: 0;
+    margin-bottom: 25px;  */
+  }
+  .form-row .form-group {
+    width: 800px;
+    /* display: block;  */
+  }
+  
+  .form-control {
+      height: 42px;
+      border: 1px solid #e6e6e6;
+      width: 100%;
+      background: none;
+      padding: 0 35px 0 19px;
+      color: #999; }
+      .form-control:focus {
+        border-color: #FF5733; }
+      .form-control::-webkit-input-placeholder {
+        color: #999; }
+      .form-control::-moz-placeholder {
+        color: #999; }
+      .form-control:-ms-input-placeholder {
+        color: #999; }
+      .form-control:-moz-placeholder {
+        color: #999; }
+  
+  select{
+    height: 42px;
+      border: 1px solid #e6e6e6;
+      width: 100%;
+      background: none;
+      padding: 0 35px 0 19px;
+      color: #999;  
+  }
+  
+  table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+          }
+  
+          td, th {
+          border: 1px solid #dddddd;
+          padding: 12px;
+          }
+       .facilies{
+           float:right;
+       }
+  .sol{
+           font-size:18px;
+           color:gray;
+       }
+       .textface{
+           color:gray;
+       } 
+  

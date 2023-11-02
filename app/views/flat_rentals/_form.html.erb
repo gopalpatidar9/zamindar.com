@@ -1,205 +1,104 @@
-
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>FormWizard_v8</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="author" content="colorlib.com">
-        <%= stylesheet_link_tag "https://use.fontawesome.com/releases/v5.15.3/css/all.css" %>
-        <%= stylesheet_link_tag 'font-awesome.min.css'%>
-		<%= stylesheet_link_tag 'datepicker.min.css'%>
-        <%= stylesheet_link_tag 'style1.css'%>
-        <%= stylesheet_link_tag 'style.css'%>
-        <%= stylesheet_link_tag 'bootstrap.min.css'%>
-        <%= stylesheet_link_tag 'material-design-iconic-font.css'%>        
-	</head>
-    <style>
-       table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-        td, th {
-        border: 1px solid #dddddd;
-        padding: 12px;
-        }
-     .facilies{
-         float:right;
-     }
-     .sol{
-         font-size:18px;
-         color:gray;
-     }
-     .textface{
-         color:gray;
-     }
+<body>
 
-     .inputDnD {
-        .form-control-file {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            min-height: 7em;
-            outline: none;
-            visibility: hidden;
-            cursor: pointer;
-            background-color: #c61c23;
-            box-shadow: 0 0 5px solid currentColor;
-            &:before {
-            content: attr(data-title);
-            position: absolute;
-            top: 0.5em;
-            left: 0;
-            width: 100%;
-            min-height: 6em;
-            line-height: 2em;
-            padding-top: 2em;
-            opacity: 1;
-            visibility: visible;
-            text-align: center;
-            border: 0.25em dashed currentColor;
-            transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-            overflow: hidden;
-            }
-            &:hover {
-            &:before {
-                border-style: solid;
-                box-shadow: inset 0px 0px 0px 0.25em currentColor;
-            }
-            }
-        }
-      }
-</style>
-	<body>
-        <div class="page-head"> 
-            <div class="container">
-                <div class="row">
-                    <div class="page-head-content">
-                        <h1 class="page-title">Submit new property</h1>               
-                    </div>
-                </div>
-            </div>
-        </div><hr>
-        <div class="wizard-header">
-            <h3 style="color:gray;">
-             <b>Submit</b> YOUR PROPERTY <br>
-             <small>Lorem ipsum dolor sit amet, consectetur adipisicing.</small>
-            </h3>
-        </div>
-     
-		<div class="wrapper">
-            <form action="" id="wizard">
-              <%= form_with(model: flat_rental) do |form| %>
-        		<!-- SECTION 1 -->
-                <h4></h4>
-                <section>
-                    <h3>Basic details</h3><br/>
-                	<div class="form-row">
-                        <div class="form-holder">
-                            <%= form.select :property_type, FlatRental::PROPERTY_TYPES, prompt: 'Select Property Type', class:"" %>
-                        </div>
-                        <div class="form-holder">
-                            <label for="posting_type">Posting Us:</label>&nbsp &nbsp
-                            <%= form.radio_button :posting_type, 'Full House' %> Full House &nbsp &nbsp
-                            <%= form.radio_button :posting_type, 'On Sharing' %> On Sharing House
-                        </div>
-                	</div>
-                    <div class="form-row">
-                        <div class="form-holder">
-                            <%= form.select :present_in , FlatRental::PRESENT_IN, prompt: 'select present in' %>
-                        </div>
-                        <div class="form-holder">
-                            <%= form.select :furnishing_status , FlatRental::FURNISHING_STATUS, prompt: 'select furnishing status' %>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-holder">
-                            <%= form.country_select :country, priority: ['India'], class: 'form-control' %>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-holder">
-                                <i class="fa-solid fa-location-pin" style="color: #6a6b6c;"></i>
-                                <input type="text" class="form-control" placeholder="State">
-                            </div>
-                            <div class="form-holder">
-                                <i class="fa-solid fa-location-dot" style="color: #6a6b6c;"></i>
-                                <%= form.text_field :city, class: 'form-control' , placeholder:"city" %>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-holder">
-                            <i class="fa-solid fa-map-location-dot" style="color: #6a6b6c;"></i>
-                            <%= form.text_field :location, class: 'form-control' , placeholder:"location"  %>
-                        </div>
-                        <div class="form-holder password">
-                            <i class="zmdi zmdi-eye"></i>
-                            <input type="password" class="form-control" placeholder="Reference Coder">
-                        </div>
-                    </div>
-                </section>
-				<!-- SECTION 2 -->
-                <h4></h4>
-                <section>
-                     <h3>Preference DETAILS</h3><br/>
-                	<div class="form-row">
-                        <div class="form-holder">
-                            <i class="fa-solid fa-bed-pulse" style="color: #6a6b6c;"></i>
-                            <%= form.number_field :bedrooms, placeholder:"No. of Bedrooms" ,class:"form-control" %>
-                        </div>
-                        <div class="form-holder password">
-                            <i class="fa-solid fa-stairs" style="color: #6a6b6c;"></i>
-                            <%= form.select :floor_no , FlatRental::FLOOR_NO, prompt: 'select Floor NO.' %>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-holder">
-                            <i class="fa-solid fa-bath" style="color: #6a6b6c;"></i>
-                            <%= form.number_field :washrooms, placeholder:"No. of Washroom" ,class:"form-control" %>
-                        </div>
-                        <div class="form-holder password">
-                            <i class="fa-solid fa-user" style="color: #6a6b6c;"></i>
-                            <label for="posting_type">Preferred Gender :</label>&nbsp &nbsp
-                            <%= form.radio_button :preferred_gender, 'male' %> Male &nbsp &nbsp
-                            <%= form.radio_button :preferred_gender, 'Femal' %> Femal &nbsp &nbsp
-                            <%= form.radio_button :preferred_gender, 'Both' %> Both
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-holder">
-                            <i class="fa-solid fa-square-parking" style="color: #6a6b6c;"></i>
-                            <label for="posting_type">Parking Availability :</label>&nbsp &nbsp
-                            <%= form.radio_button :parking_availability, '2-whealer' %> 2-whealer &nbsp &nbsp
-                            <%= form.radio_button :parking_availability, 'car parking' %> car parking &nbsp &nbsp
-                            <%= form.radio_button :parking_availability, 'Both' %> Both
-                        </div>
-                        <div class="form-holder password">
-                            <i class="fa-solid fa-asterisk" style="color: #6a6b6c;"></i>
-                            <label for="posting_type">Tenant Preference :</label>&nbsp &nbsp
-                            <%= form.radio_button :tenant_preference, 'Professionals' %> Professionals &nbsp &nbsp
-                            <%= form.radio_button :tenant_preference, 'Students' %> Students &nbsp &nbsp
-                            <%= form.radio_button :tenant_preference, 'Both' %> Both
-                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-holder">
-                            <i class="fa-solid fa-indian-rupee-sign" style="color: #6a6b6c;"></i>
-                            <%= form.text_field :monthly_rent, placeholder:"Monthly Rent" ,class:"form-control" %>
-                        </div>
-                        <div class="form-holder password">
-                            <i class="fa-solid fa-indian-rupee-sign" style="color: #6a6b6c;"></i>
-                            <%= form.text_field :security_deposit, placeholder:"Security Deposit" ,class:"form-control" %>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- SECTION 3 -->
-                <h4></h4>
-                <section>
-                    <h3>facilities</h3>
-                    <table>
+<div id="regForm">
+<%= form_with(model: @flat_rental) do |form| %>
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center; margin-bottom:30px;">
+    <div class="step"><i class="fa-solid fa-house ico" style="font-size:35px; margin-top:20%;"></i></div>
+    <div class="step"><i class="fa-solid fa-indian-rupee-sign" style="font-size:35px; margin-top:20%;"></i></div>
+    <div class="step"><i class="fa-solid fa-inbox" style="font-size:35px; margin-top:20%;"></i></div>
+    <div class="step"><i class="fa-solid fa-image" style="font-size:35px; margin-top:20%;"></i></div>
+  </div>
+  <!-- One "tab" for each step in the form: -->
+  <div class="tab">
+    <h3 style="text-align:center; margin-bottom:25px;">Basic details</h3>
+    <div class="form-row">
+      <div class="form-holder" >
+       <%= form.select :property_type, FlatRental::PROPERTY_TYPES, prompt: 'Select Property Type' , style:"" %>  
+      </div>
+      <div class="form-holder">
+       <label for="posting_type">Posting Us:</label>&nbsp &nbsp
+       <%= form.radio_button :posting_type, 'Full House' %> Full House &nbsp &nbsp
+       <%= form.radio_button :posting_type, 'On Sharing' %> On Sharing House 
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-holder" >
+       <%= form.select :present_in , FlatRental::PRESENT_IN, prompt: 'select present in' %>
+      </div>
+      <div class="form-holder" >
+       <%= form.country_select :country, priority: ['India'], class: 'form-control' %>
+      </div>
+    </div>  
+    <div class="form-row"> 
+      <div class="form-holder"> 
+       <%= form.text_field :city, class: 'form-control' , placeholder:"city" %>
+      </div> 
+      <div class="form-holder" >
+       <%= form.text_field :location, class: 'form-control' , placeholder:"location"  %>
+      </div>
+    </div>
+    <div class="form-row">     
+      <div class="form-holder"> 
+       <%= form.select :furnishing_status , FlatRental::FURNISHING_STATUS, prompt: 'select furnishing status' %>
+     </div>
+     <div class="form-holder"> 
+     </div>
+    </div>   
+  </div>
+  <div class="tab">
+    <h3 style="text-align:center; margin-bottom:25px;">Preference DETAILS</h3>
+   <div class="form-row">     
+      <div class="form-holder"> 
+        <%= form.number_field :bedrooms, placeholder:"No. of Bedrooms" ,class:"form-control" %>
+      </div>
+      <div class="form-holder"> 
+        <%= form.select :floor_no , FlatRental::FLOOR_NO, prompt: 'select Floor NO.' %>
+      </div>
+   </div>
+    <div class="form-row">     
+      <div class="form-holder"> 
+         <%= form.number_field :washrooms, placeholder:"No. of Washroom" ,class:"form-control" %>
+      </div>
+      <div class="form-holder"> 
+        <label for="posting_type"><b>Preferred Gender :</b></label>&nbsp &nbsp
+        <%= form.radio_button :preferred_gender, 'male' %> Male &nbsp &nbsp
+        <%= form.radio_button :preferred_gender, 'Femal' %> Femal &nbsp &nbsp
+        <%= form.radio_button :preferred_gender, 'Both' %> Both
+      </div>
+   </div>
+    <div class="form-row">     
+      <div class="form-holder"> 
+        <%= form.text_field :monthly_rent, placeholder:"Monthly Rent" ,class:"form-control" %>
+      </div>
+      <div class="form-holder"> 
+        <label for="posting_type"><b>Tenant Preference :</b></label>&nbsp &nbsp
+        <%= form.radio_button :tenant_preference, 'Professionals' %> Professionals &nbsp &nbsp
+        <%= form.radio_button :tenant_preference, 'Students' %> Students &nbsp &nbsp
+        <%= form.radio_button :tenant_preference, 'Both' %> Both
+      </div>
+   </div>
+    <div class="form-row">     
+      <div class="form-holder"> 
+        <%= form.text_field :security_deposit, placeholder:"Security Deposit" ,class:"form-control" %>
+      </div>
+      <div class="form-holder"> 
+        <label for="posting_type"><b>Parking Availability :</b></label>&nbsp &nbsp
+        <%= form.radio_button :parking_availability, '2-whealer' %> 2-whealer &nbsp &nbsp
+        <%= form.radio_button :parking_availability, 'car parking' %> car parking &nbsp &nbsp
+        <%= form.radio_button :parking_availability, 'Both' %> Both
+      </div>
+   </div>     
+  </div>
+  <div class="tab">
+    <h3 style="text-align:center; margin-bottom:25px;">facilities</h3>
+    <table>
                     <tr>
                         <td><i class="fa-solid fa-bed sol"></i> &nbsp &nbsp <b class="textface">Bed</b>
                             <%= form.check_box :room_facilities, { multiple: true, class:"facilies" }, 'Bed', nil %>
@@ -232,33 +131,139 @@
                             <%= form.check_box :room_facilities, { multiple: true, class:"facilies" }, 'Wi-Fi', nil %>                       
                         </td>
                     </tr>
-                    </table>
+                    </table><br/>
+  </div>
+  <div class="tab">
+    <h3 style="text-align:center; margin-bottom:25px;">Upload Images</h3>
+    <div style="display:flex; justify-content: center;">
+        <div style="border:dotted 2px; mex-height:400px; width:500px; text-align:center;"> 
+            <p>you upload atlist 4 images</p>
+            <p><%= form.file_field :images, multiple: true, id:"gallery-photo-add" %></p>
+            <div class="gallery"></div>
+        </div>        
+    </div>
+    <div style="text-align:center; margin-top:30px;">       
+        <%= form.submit 'Finish', class:"btn"%>                     
+    </div>
+  </div>
+  <div style="overflow:auto;">
+    <div style="float:right;">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+  </div>
+<% end %>  
+</div>
+                 
+<script>
+var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the current tab
 
-                </section>
+function showTab(n) {
+  // This function will display the specified tab of the form...
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+  
+  if (n == 0) {
+    document.getElementById("prevBtn").style.display = "none"; // Hide the "Previous" button on the first step
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+  }
+  
+  if (n == (x.length - 1)) {
+    document.getElementById("nextBtn").style.display = "none"; // Hide the "Next" button on the last step
+    document.getElementById("prevBtn").style.display = "inline"; // Show the "Previous" button on the last step
+    document.getElementById("submitBtn").style.display = "inline"; // Show the "Submit" button on the last step
+  } else {
+    document.getElementById("nextBtn").style.display = "inline";
+    document.getElementById("submitBtn").style.display = "none"; // Hide the "Submit" button for other steps
+  }
+ 
+  //... and run a function that will display the correct step indicator:
+  fixStepIndicator(n);
+}
 
-                <!-- SECTION 4 -->
-                <h4></h4>
-                <section>
-                    <h3>Upload Images</h3>
-                    <div class="cart_totals">
-                         <div class="col-sm-12 offset-sm-3">
-                            <div class="form-group inputDnD">
-                              <%= form.file_field :images, multiple: true, class:'form-control-file text-success font-weight-bold' %>
-                            </div>
-                         </div> 
-                    </div>                   
-                       <%= form.submit 'Finish', style:"margin: 0; position: absolute; top: 100%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); width:200px; color:#fff; background:#FF5733; font-size:20px; " %>
-                </section>
-            <% end %>    
-            </form>
-		</div>
+function nextPrev(n) {
+  // This function will figure out which tab to display
+  var x = document.getElementsByClassName("tab");
+  // Exit the function if any field in the current tab is invalid:
+  if (n == 1 && !validateForm()) return false;
+  // Hide the current tab:
+  x[currentTab].style.display = "none";
+  // Increase or decrease the current tab by 1:
+  currentTab = currentTab + n;
+  // if you have reached the end of the form...
+  
+  // Otherwise, display the correct tab:
+  showTab(currentTab);
+}
 
+function validateForm() {
+  // This function deals with validation of the form fields
+  var x, y, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+    // If a field is empty...
+    if (y[i].value == "") {
+      // add an "invalid" class to the field:
+      y[i].className += " invalid";
+      // and set the current valid status to false
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
+}
 
-		<%= javascript_include_tag 'jquery-3.3.1.min.js' %>
-        <%= javascript_include_tag 'jquery.steps.js' %>
-        <%= javascript_include_tag 'main1.js' %>
-       
-<!-- Template created and distributed by Colorlib -->
+function fixStepIndicator(n) {
+  // This function removes the "active" class of all steps...
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class on the current step:
+  x[n].className += " active";
+}
+</script>
+
+<script>
+    $(function() {
+    // Multiple images preview in the browser
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    // Create an image element
+                    var image = $($.parseHTML('<img>')).attr('src', event.target.result);
+                    
+                    // Set the width of the image (change 100 to your desired width)
+                    image.attr('style', 'width: 100px');
+
+                    // Append the image to the container
+                    image.appendTo(placeToInsertImagePreview);
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+    };
+
+    $('#gallery-photo-add').on('change', function() {
+        imagesPreview(this, 'div.gallery');
+    });
+});
+
+</script>
+
 </body>
 </html>
-
+    

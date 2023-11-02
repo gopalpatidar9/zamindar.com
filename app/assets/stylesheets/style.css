@@ -94,6 +94,11 @@ img {
     border: 0px none; 
 }
 
+.img {
+    width:800px;
+    height:450px;
+}
+
 input {
     outline: 0;
     border: none;
@@ -1043,11 +1048,11 @@ label small{
 
 .slider-area{
     position: relative;
-    height: 430px;
+    height: 400px;
 }
 #bg-slider .item img{
     width: 100%;
-    height: 430px;
+    height: 380px;
 }
 
 .slider-content{
@@ -1627,7 +1632,6 @@ padding: 0 0 0.5em;
     padding-top: 25px;
 }
 .padding-top-40{
-    padding-top: 40px;
 }
 .padding-bottom-40{
     padding-bottom: 40px;
@@ -1748,8 +1752,8 @@ proerty-th
     position: relative;
     width:100%;
     opacity: 0.7;
-    min-height: 225px;
-    max-height: 265px;
+    min-height: 200px;
+    max-height: 200px;
 }
 .proerty-th .proerty-item  .item-entry{
     padding: 8px;
@@ -1982,6 +1986,7 @@ single property page
 }
 .single-property-content .lSSlideOuter .lSPager {
     display: inline-block;
+    height: 50px;
 }
 .single-property-content .lSSlideOuter .lSPager li.active, .single-property-content .lSSlideOuter .lSPager li:hover {
     border-radius: 0px;
@@ -2139,7 +2144,7 @@ single property page
     color: #626262;
     font-size: 20px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 .dealer-name span {
     font-size: 17px;
@@ -3079,3 +3084,4 @@ padding: 10px;
 #map {
     height: 300px;
 }
+

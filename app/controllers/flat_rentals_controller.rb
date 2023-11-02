@@ -14,6 +14,10 @@ class FlatRentalsController < ApplicationController
     # If you need to include the associated user, you can do:
     @user = @flat_rental.user
     @messages = @flat_rental.messages
+    @first_image = @flat_rental.images.first
+    @last_image = @flat_rental.images.last
+    @second_image = @flat_rental.images.second
+    @therid_image = @flat_rental.images.third
   end
 
   # GET /flat_rentals/new
@@ -28,6 +32,7 @@ class FlatRentalsController < ApplicationController
   # POST /flat_rentals or /flat_rentals.json
   def create
     @flat_rental = FlatRental.new(flat_rental_params)
+    @flat_rental.user_id = current_user.id
     respond_to do |format|
       if @flat_rental.save
         format.html { redirect_to flat_rental_url(@flat_rental), notice: "Flat rental was successfully created." }
@@ -75,6 +80,6 @@ class FlatRentalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def flat_rental_params
-      params.require(:flat_rental).permit(:property_type, :posting_type, :bedrooms, :furnishing_status, :present_in, :floor_no, :monthly_rent, :security_deposit , :washrooms, :preferred_gender, :tenant_preference, :parking_availability, :country, :city, :location, :user_id , room_facilities: [] , images:[])
+      params.require(:flat_rental).permit(:property_type, :posting_type, :bedrooms, :furnishing_status, :present_in, :floor_no, :monthly_rent, :security_deposit , :washrooms, :preferred_gender, :tenant_preference, :parking_availability, :country, :city, :location , room_facilities: [] , images:[])
     end
 end

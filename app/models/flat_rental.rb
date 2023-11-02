@@ -6,7 +6,7 @@ class FlatRental < ApplicationRecord
     PROPERTY_TYPES = ['Residential', 'Commercial']
     FURNISHING_STATUS = ['Furnished', 'Unfurnished', 'Semifurnished']
     PRESENT_IN = ['An independent building', 'An independent flat(s)', 'Present in a society']
-    FLOOR_NO = ['Lower Basment' , 'Uper Basment' ,'Ground' , '1' , '2' , '3' , '4' , '5', '6' ]
+    FLOOR_NO = ['1' , '2' , '3' , '4' , '5', '6' ]
 
     # # serialize :room_facilities, Array
     # # serialize :images, Array

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @plot %>
+
+<div>
+  <%= link_to "Edit this plot", edit_plot_path(@plot) %> |
+  <%= link_to "Back to plots", plots_path %>
+
+  <%= button_to "Destroy this plot", @plot, method: :delete %>
+</div>

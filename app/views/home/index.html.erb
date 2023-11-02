@@ -1,6 +1,13 @@
 
 <%= render "home/header" %>
+<style>
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+}
 
+ 
+</style>
  <body>
         
         <div class="slider-area">
@@ -16,9 +23,12 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi deserunt deleniti, ullam commodi sit ipsam laboriosam velit adipisci quibusdam aliquam teneturo!</p>
                         <div class="search-form wow pulse" data-wow-delay="0.8s">
 
-                            <form action="" class=" form-inline">
-                                
-                                <button class="btn  toggle-btn" type="button"><i class="fa fa-bars"></i></button>
+                            <form action="" class="form-inline">
+                                <div class="tab form-group" style="width:150px;">
+                                    <a class="tablinks" onclick="openCity(event, 'London')" style="color:gray; cursor: pointer; text-decoration:none; font-size:17px; font-weight: 400;" id="defaultOpen">Flats</a>&nbsp &nbsp &nbsp 
+                                    <a class="tablinks" onclick="openCity(event, 'Paris')" style="color:gray; cursor: pointer; text-decoration:none; font-size:17px; font-weight: 400;">Lands</a>
+                                </div>
+                                <button class="btn  toggle-btn" type="button"><i class="fa fa-bars"></i></button>    
                                 <div class="form-group">                                   
                                     <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select your city">
 
@@ -30,7 +40,7 @@
                                         <option>kyoto , shibua</option>
                                     </select>
                                 </div>
-
+                                
                                 <div class="form-group" >
                                     <input type="text" class="form-control" placeholder="Key word">
                                 </div>
@@ -183,8 +193,6 @@
                 </div>
             </div>
         </div>
-
-
         <!-- property area -->
         <div class="content-area recent-property" style="padding-bottom: 60px; background-color: rgb(252, 252, 252);">
             <div class="container">   
@@ -228,9 +236,11 @@
                                 <a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>                          
                             </div><!--/ .layout-switcher-->
                         </div>
-                        <div class="col-md-12 "> 
+                        <div id="London" class="tabcontent">
+                            <div class="col-md-12 "> 
                             <div id="list-type" class="proerty-th">
                              <% @flat_rentals.each_with_index do |flat_rental, index| %>
+                               <%= link_to flat_rental do %>
                                 <div class="col-sm-6 col-md-3 p0">
                                     <div class="box-two proerty-item">
                                         <div class="item-thumb">
@@ -242,45 +252,61 @@
                                         </div>
 
                                         <div class="item-entry overflow">
-                                            <h5><a href="property-1.html"> Super nice villa </a></h5>
+                                            <h5><a href=""><%= flat_rental.location %> </a></h5>
                                             <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Area :</b> 120m </span>
-                                            <span class="proerty-price pull-right"><%= flat_rental.monthly_rent%></span>
+                                            <span class="pull-left"><b> Area :</b> 1000sq </span>
+                                            <span class="proerty-price pull-right"><i class="fa-solid fa-indian-rupee-sign"></i> <%= flat_rental.monthly_rent%></span>
                                             <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
                                             <div class="property-icon">
-                                                <img src="img/icon/bed.png">(5)|
-                                                <img src="img/icon/shawer.png">(2)|
-                                                <img src="img/icon/cars.png">(1)  
+                                                <i class="fa-solid fa-bed" style="color: #6a6b6c;"></i> (<%= flat_rental.bedrooms%>) |
+                                                <i class="fa-solid fa-bath" style="color: #6a6b6c;"></i> (<%= flat_rental.washrooms%>) |
+                                                <%= link_to "Show", flat_rental %>  
                                             </div>
                                         </div>
                                     </div>
                                 </div> 
-                              <% end %>
+                             <% end %>   
+                            <% end %>                              
+                            </div>
+                        </div>
+                        </div>
+
+                        <div id="Paris" class="tabcontent">
+                            <div class="col-md-12 "> 
+                            <div id="list-type" class="proerty-th">
+                             <% @plots.each_with_index do |plot, index| %>
+                               <%= link_to plot do %>
                                 <div class="col-sm-6 col-md-3 p0">
                                     <div class="box-two proerty-item">
                                         <div class="item-thumb">
-                                            <a href="property-1.html" ><img src="assets/img/demo/property-2.jpg"></a>
+                                            <% if @plotfirst_images[index] %>
+                                            <%= image_tag rails_blob_path(@plotfirst_images[index], only_path: true) %>
+                                            <% else %>
+                                            <p>No images available</p>
+                                            <% end %> 
                                         </div>
 
                                         <div class="item-entry overflow">
-                                            <h5><a href="property-1.html"> Super nice villa </a></h5>
+                                            <h5><a href=""><%= plot.address %> </a></h5>
                                             <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Area :</b> 120m </span>
-                                            <span class="proerty-price pull-right"> $ 300,000</span>
+                                            <span class="pull-left"><b> Area :</b> 1000sq </span>
+                                            <span class="proerty-price pull-right"><i class="fa-solid fa-indian-rupee-sign"></i> <%= plot.expected_price %></span>
                                             <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
                                             <div class="property-icon">
-                                                <img src="img/icon/bed.png">(5)|
-                                                <img src="img/icon/shawer.png">(2)|
-                                                <img src="img/icon/cars.png">(1)  
+                                                <i class="fa-solid fa-bed" style="color: #6a6b6c;"></i> (<%= %>) |
+                                                <i class="fa-solid fa-bath" style="color: #6a6b6c;"></i> (<%= %>) |
+                                                <%= link_to "Show", plot %>  
                                             </div>
                                         </div>
-
-
                                     </div>
                                 </div> 
-
+                             <% end %>   
+                            <% end %>                              
+                            </div>
                             </div>
                         </div>
+                        
+                       
                         <div class="col-md-12"> 
                             <div class="pull-right">
                                 <div class="pagination">
@@ -438,5 +464,22 @@
             </div>
 
         </div>  
-   
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
     </body>

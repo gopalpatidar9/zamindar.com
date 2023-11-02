@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<%= stylesheet_link_tag "style3.css"%>
+<body>
+
+<div id="regForm">
+<%= form_with(model: plot) do |form| %>
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center; margin-bottom:30px;">
+    <div class="step"><i class="fa-solid fa-landmark ico" style="font-size:35px; margin-top:20%;"></i></div>
+    <div class="step"><i class="fa-solid fa-indian-rupee-sign" style="font-size:35px; margin-top:20%;"></i></div>
+    <div class="step"><i class="fa-solid fa-image" style="font-size:35px; margin-top:20%;"></i></div>
+  </div>
+  <!-- One "tab" for each step in the form: -->
+  <div class="tab">
+    <h3 style="text-align:center; margin-bottom:25px;">Basic details</h3>
+    <div class="form-row">
+      <div class="form-holder" >
+       <%= form.select :property_type, Plot::PROPERTY_TYPES, prompt: 'Select Property Type' , style:"" %>  
+      </div>
+      <div class="form-holder">
+       <label for="posting_type">Property Availability :</label>&nbsp &nbsp
+       <%= form.radio_button :property_availability, 'New PropertY' %> New PropertY &nbsp &nbsp
+       <%= form.radio_button :property_availability, 'Resale' %> Resale 
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-holder" >
+       <%= form.select :transaction_type , Plot::PRESENT_IN, prompt: 'select present in' %>
+      </div>
+      <div class="form-holder" >
+       <%= form.text_field :address, class: 'form-control' , placeholder:"Enter Address"%>
+      </div>
+    </div>  
+    <div class="form-row"> 
+      <div class="form-holder"> 
+       <%= form.text_field :city, class: 'form-control' , placeholder:"city" %>
+      </div> 
+      <div class="form-holder" >
+       <%= form.text_field :locality, class: 'form-control' , placeholder:"locality"  %>
+      </div>
+    </div>  
+  </div>
+  <div class="tab">
+    <h3 style="text-align:center; margin-bottom:25px;">Preference DETAILS</h3>
+   <div class="form-row">     
+      <div class="form-holder"> 
+        <%= form.number_field :road_width, placeholder:"Road width" ,class:"form-control" %>
+      </div>
+      <div class="form-holder"> 
+        <%= form.number_field :plot_area, placeholder:"Plot Area" ,class:"form-control" %>
+      </div>
+   </div>
+    <div class="form-row">     
+      <div class="form-holder"> 
+        <%= form.text_field :expected_price, placeholder:"Expected Price" ,class:"form-control" %>
+      </div>
+      <div class="form-holder"> 
+        <%= form.text_field :price_per_sqyrd, placeholder:"Price Per Sqyrd" ,class:"form-control" %>
+      </div>
+    </div>
+    <div class="form-row">     
+      <div class="form-holder"> 
+        <%= form.label :corner_plot%>
+        <%= form.check_box :corner_plot %>
+      </div>
+    </div>
+  </div>
+  <div class="tab">
+    <h3 style="text-align:center; margin-bottom:25px;">Upload Images</h3>
+    <div style="display:flex; justify-content: center;">
+        <div style="border:dotted 2px; mex-height:400px; width:500px; text-align:center;"> 
+            <p>you upload atlist 4 images</p>
+            <p><%= form.file_field :images, multiple: true, id:"gallery-photo-add" %></p>
+            <div class="gallery"></div>
+        </div>        
+    </div>
+    <div style="text-align:center; margin-top:30px;">       
+        <%= form.submit 'Finish', class:"btn"%>                     
+    </div>
+  </div>
+  <div style="overflow:auto;">
+    <div style="float:right;">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+  </div>
+<% end %>  
+</div>
+                 
+<script>
+var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the current tab
+
+function showTab(n) {
+  // This function will display the specified tab of the form...
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+  
+  if (n == 0) {
+    document.getElementById("prevBtn").style.display = "none"; // Hide the "Previous" button on the first step
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+  }
+  
+  if (n == (x.length - 1)) {
+    document.getElementById("nextBtn").style.display = "none"; // Hide the "Next" button on the last step
+    document.getElementById("prevBtn").style.display = "inline"; // Show the "Previous" button on the last step
+    document.getElementById("submitBtn").style.display = "inline"; // Show the "Submit" button on the last step
+  } else {
+    document.getElementById("nextBtn").style.display = "inline";
+    document.getElementById("submitBtn").style.display = "none"; // Hide the "Submit" button for other steps
+  }
+ 
+  //... and run a function that will display the correct step indicator:
+  fixStepIndicator(n);
+}
+
+function nextPrev(n) {
+  // This function will figure out which tab to display
+  var x = document.getElementsByClassName("tab");
+  // Exit the function if any field in the current tab is invalid:
+  if (n == 1 && !validateForm()) return false;
+  // Hide the current tab:
+  x[currentTab].style.display = "none";
+  // Increase or decrease the current tab by 1:
+  currentTab = currentTab + n;
+  // if you have reached the end of the form...
+  
+  // Otherwise, display the correct tab:
+  showTab(currentTab);
+}
+
+function validateForm() {
+  // This function deals with validation of the form fields
+  var x, y, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+    // If a field is empty...
+    if (y[i].value == "") {
+      // add an "invalid" class to the field:
+      y[i].className += " invalid";
+      // and set the current valid status to false
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
+}
+
+function fixStepIndicator(n) {
+  // This function removes the "active" class of all steps...
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class on the current step:
+  x[n].className += " active";
+}
+</script>
+
+<script>
+    $(function() {
+    // Multiple images preview in the browser
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    // Create an image element
+                    var image = $($.parseHTML('<img>')).attr('src', event.target.result);
+                    
+                    // Set the width of the image (change 100 to your desired width)
+                    image.attr('style', 'width: 100px');
+
+                    // Append the image to the container
+                    image.appendTo(placeToInsertImagePreview);
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+    };
+
+    $('#gallery-photo-add').on('change', function() {
+        imagesPreview(this, 'div.gallery');
+    });
+});
+
+</script>
+
+</body>
+</html>
+    

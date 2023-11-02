@@ -1,8 +1,3 @@
-<%
-=begin%>
- <%= render "home/header" %> 
-<%
-=end%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -35,8 +30,10 @@
 <!-- Template created and distributed by Colorlib -->
 </body>
 </html>
+<%= render "form", plot: @plot %>
 
-<%= render "form", flat_rental: @flat_rental %>
+<br>
 
-
- 
+<div>
+  <%= link_to "Back to plots", plots_path %>
+</div>

@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  property_type: MyString
+  city: MyString
+  locality: MyString
+  address: MyText
+  road_width: 9.99
+  plot_area: 9.99
+  transaction_type: MyString
+  property_availability: MyString
+  expected_price: 9.99
+  price_per_sqyrd: 9.99
+  corner_plot: false
+  images: MyString
+
+two:
+  property_type: MyString
+  city: MyString
+  locality: MyString
+  address: MyText
+  road_width: 9.99
+  plot_area: 9.99
+  transaction_type: MyString
+  property_availability: MyString
+  expected_price: 9.99
+  price_per_sqyrd: 9.99
+  corner_plot: false
+  images: MyString
